@@ -3,14 +3,14 @@ const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const ProductImg = require('../models/ProductImg');
 
-const getAll = catchError(async(req, res) => {
-    const userId = req.user.id;
-    const results = await Cart.findAll({
-        include: [ Product ],
-        where: { userId }
-    });
-    return res.json(results);
-});
+// const getAll = catchError(async(req, res) => {
+//     const userId = req.user.id;
+//     const results = await Cart.findAll({
+//         include: [ Product ],
+//         where: { userId }
+//     });
+//     return res.json(results);
+// });
 
 // const getAll = catchError(async(req, res) => {
 //     const userId = req.user.id;
@@ -22,13 +22,13 @@ const getAll = catchError(async(req, res) => {
 //     return res.json(results);
 // });
 
-// const getAll = catchError(async(req, res) => {
-//     const results = await Cart.findAll({include: [{
-//         model: Product,
-//         include: [ProductImg]
-//     }]});
-//     return res.json(results);
-// });
+const getAll = catchError(async(req, res) => {
+    const results = await Cart.findAll({include: [{
+        model: Product,
+        include: [ProductImg]
+    }]});
+    return res.json(results);
+});
 
 const create = catchError(async(req, res) => {
     const { productId, quantity } = req.body
